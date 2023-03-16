@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/emrevebilgic/learning-hooks/issues"
   },
-  "homepage": "https://github.com/emrevebilgic/learning-hooks.git",
+  "homepage": "https://github.com/emrevebilgic/learning-hooks#readme",
   "dependencies": {
     "@babel/core": "^7.21.3",
     "@babel/plugin-transform-runtime": "^7.21.0",
