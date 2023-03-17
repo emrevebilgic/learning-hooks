@@ -4,13 +4,17 @@ import { SomeContext } from "../pages/ContextHook";
 
 const Child1 = () => {
     return (
-        <Child2 />
+        <div className="context-child">
+            <Child2 />
+        </div>
     )
 }
 
 const Child2 = () => {
     return (
-        <ContextChild />
+        <div className="context-child">
+            <ContextChild />
+        </div>
     )
 }
 
@@ -19,9 +23,9 @@ const ContextChild = () => {
     const setContextCount = useContext(SomeContext);
     
     return (
-        <>
+        <div className="context-child">
             <button className="btn btn-primary" onClick={()=> setContextCount( (c)=>c+1) }>Add 1</button>
-        </>
+        </div>
     )
 }
 

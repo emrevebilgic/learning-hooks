@@ -7,7 +7,7 @@ const StateHook = () => {
     return (
         <>
             <p>
-                useState is the simplest of our hooks. It is the hook to manipulate a component's states. Each state that is bound to a useState hook can be assigned to a new value by the setter function also provided by the hook. As you know, when a component's state is changed, a re-render happens... Lets see it below:
+                <code>useState()</code> is the simplest of our hooks. It is the hook to manipulate a component's states. We create it like this: <br/> <code>const [<var>someState, setSomeState</var>] = useState(<var>&lt;initialState&gt;</var>)</code> <br/> Each state that is bound to a useState hook can be assigned to a new value by the setter function also provided by the hook. As you know, when a component's state is changed, a re-render happens... Lets see it below:
             </p>
 
             <div className="d-inline-block mb-3">

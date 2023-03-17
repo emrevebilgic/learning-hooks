@@ -1,7 +1,13 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
 
 module.exports = {
     mode: 'development',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index_bundle.js',
+        publicPath: '/'
+    },
     module: {
         rules: [
             {
@@ -32,7 +38,10 @@ module.exports = {
             }
         ],
     },
-    devServer: {port: 8001,},
+    devServer: {
+        port: 8001,
+        historyApiFallback: true,
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html'

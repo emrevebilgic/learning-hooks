@@ -11,17 +11,24 @@ const ContextHook = () => {
     return (
         <>
             <p>
-                useContext hook is the medicine for the <strong>prop drillling</strong> curse. As you know, a state can be passed from parent to child. Unfortunately, it does not work the other way. <strong>A Context</strong> is going to help our child component to manipulate its parent's state.
+                useContext hook is the medicine for the <strong>prop drillling</strong> curse. As you know, a state can be passed from parent to child. Unfortunately, it's a one way street. <strong>A Context</strong> is going to help our child component to manipulate its parent's state.
             </p>
 
             <p>
-                Below, parent has the "count" state which is initially 0. But the button is in the child component. We <strong>created a context</strong> at parent level and set its value to the state setter function. So, the child component will access that setter function via useContext hook.
+                Below, parent has the <code>count</code> state which is initially 0.The button updating the state is in the child component. We <strong>create</strong> a context at parent level: <br/> <code> const MyContext = createContext()</code> <br/> Then we will <strong>provide</strong> a context in render, wrapping the children: <br/>
+                <code>&lt;Mycontext.Provider value=&#123;<var>setCount</var>&#125;&gt; <br/>
+                &emsp;&lt;Children /&gt; <br/>
+                &lt;Mycontext.Provider /&gt;
+                </code> <br/>
+                 Now all the children wrapped by this context will access that setter function via useContext hook.
             </p>
 
-            <div className='bg-primary color-container mb-3'>{`The count is ${count}`}</div>
 
             <SomeContext.Provider value={setCount}>
-                <Child1 />
+                <div className='context-child'>
+                    <div className='bg-primary color-container mb-3'>{`The count is ${count}`}</div>
+                    <Child1 />
+                </div>
             </SomeContext.Provider>
         </>
     )

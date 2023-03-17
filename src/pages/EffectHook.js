@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 const LittleComponent = (props) => {
 
     useEffect( ()=> {
+        //This hook will run everytime the compenent is created AND the return function will run everytime it is killed
         if(props.tickleCount === 0)
             console.log("The little component is born...")
         return ()=> console.log("You destroyed the little component you heartless monster!")
@@ -40,7 +41,7 @@ const EffectHook = () => {
     return (
         <>
             <p>
-                useEffect is out lifecycle management hook. Depending on how you pass the arguments or assigning a return function, this hook acts in several ways. We can make our code do things when a component is <strong>created, updated or killed.</strong> Please check the code and read the console to understand changes and triggers:
+                <code>useEffect()</code> is out lifecycle management hook. Depending on how you pass the arguments or assigning a return function, this hook acts in several ways. We can make our code do things when a component is <strong>created, updated or killed.</strong> <br/> <br/> Effect hook has 2 arguments: <br/> <code>useEffect(<var>&lt;function&gt;,&lt;[props, states]&gt;</var>)</code> <br/> The function is whatever action you want to take when a mount, update or unmount happens. The array tells the hook which states or props to watch for update. (If it's given <code>[]</code> it will only run at first mount.) <br/><br/> Please check the code and read the console to understand changes and triggers:
             </p>
             <div className='mb-3'>
                 { show &&
@@ -51,6 +52,7 @@ const EffectHook = () => {
                     <button className='btn btn-primary ms-2' onClick={()=> setCount((c)=>c+1)}> Tickle! </button>
                 } 
             </div>
+            
         </>
     )
 }

@@ -8,6 +8,11 @@ ul {
         }
     }
 }
+code {
+    var {
+        color: darkgray;
+    }
+}
 .page-header {
     width: 100%;
     padding: 1rem 2rem 1rem 2rem;
@@ -22,4 +27,9 @@ ul {
     color: white;
     border-radius: 12px;
     padding: 1rem;
+}
+.context-child {
+    border: 1px solid darkgray;
+    border-radius: 12px;
+    padding: 12px;
 }
