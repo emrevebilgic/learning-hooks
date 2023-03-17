@@ -21,6 +21,31 @@ const Layout = () => {
                                     <button className='btn btn-primary btn-block'>Effect Hook</button>
                                 </Link>
                             </li>
+                            <li>
+                                <Link to="/use-context">
+                                    <button className='btn btn-primary btn-block'>Context Hook</button>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/use-ref">
+                                    <button className='btn btn-primary btn-block'>Ref Hook</button>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/use-reducer">
+                                    <button className='btn btn-primary btn-block'>Reducer Hook</button>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/use-callback">
+                                    <button className='btn btn-primary btn-block'>Callback Hook</button>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/use-memo">
+                                    <button className='btn btn-primary btn-block'>Memo Hook</button>
+                                </Link>
+                            </li>
                         </ul>
                     </nav>
                 </div>
