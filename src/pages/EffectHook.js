@@ -18,7 +18,7 @@ const LittleComponent = (props) => {
     }, [props.tickleCount])
 
     return (
-        <div className='bg-secondary color-container mb-3'>
+        <div className='cute-child color-container mb-3'>
             { props.tickleCount === 0 ?
                 "I am the little component and I am very cute. Please don't kill me."
                 :
@@ -40,9 +40,6 @@ const EffectHook = () => {
 
     return (
         <>
-            <p>
-                <code>useEffect()</code> is out lifecycle management hook. Depending on how you pass the arguments or assigning a return function, this hook acts in several ways. We can make our code do things when a component is <strong>created, updated or killed.</strong> <br/> <br/> Effect hook has 2 arguments: <br/> <code>useEffect(<var>&lt;function&gt;,&lt;[props, states]&gt;</var>)</code> <br/> The function is whatever action you want to take when a mount, update or unmount happens. The array tells the hook which states or props to watch for update. (If it's given <code>[]</code> it will only run at first mount.) <br/><br/> Please check the code and read the console to understand changes and triggers:
-            </p>
             <div className='mb-3'>
                 { show &&
                     <LittleComponent tickleCount={count}/>
@@ -52,7 +49,9 @@ const EffectHook = () => {
                     <button className='btn btn-primary ms-2' onClick={()=> setCount((c)=>c+1)}> Tickle! </button>
                 } 
             </div>
-            
+            <p className='explanation'>
+                <code>useEffect()</code> is out lifecycle management hook. Depending on how you pass the arguments or assigning a return function, this hook acts in several ways. We can make our code do things when a component is <strong>created, updated or killed.</strong> <br/> <br/> Effect hook has 2 arguments: <br/> <code>useEffect(<var>&lt;function&gt;,&lt;[props, states]&gt;</var>)</code> <br/> <strong>The function</strong> is whatever action you want to take when a mount or update happens. If we give the function a <code>return</code> value (which is also a function) that one will run before unmount. <strong>The array</strong> tells the hook which states or props to watch for update. (If it's given <code>[]</code> it will only run at first mount.) <br/><br/> <small>(Read the console to understand changes and triggers on the example.)</small>
+            </p>
         </>
     )
 }
