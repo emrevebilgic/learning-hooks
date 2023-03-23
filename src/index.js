@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './pages/Layout';
 import StateHook from './pages/StateHook';
@@ -29,10 +29,11 @@ function App() {
       </Routes>
     </BrowserRouter>
   )
+
 }
 
-ReactDOM.render(
-    <App />,
-  document.querySelector('#fromjs')
-);
+const domNode = document.querySelector('#fromjs');
+const root = createRoot(domNode);
+
+root.render(<App />);
 

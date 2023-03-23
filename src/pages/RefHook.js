@@ -10,7 +10,7 @@ const RefHook = () => {
 
     const MyCustomInput = forwardRef((props,ref) => {
         return (
-            <input className="w-100 mb-3" ref={ref} placeholder="My Custom Input..." />
+            <input className="form-control mb-3" ref={ref} placeholder="My Custom Input..." />
         )
     })
 
