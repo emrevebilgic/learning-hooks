@@ -1,10 +1,11 @@
 import React from "react";
-import {useState, useReducer, useEffect} from 'react';
+import {useState, useReducer, useEffect, useRef} from 'react';
 
 const ReducerHook = () => {
 
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
+    const oldValue = useRef(null);
 
     const reducer = (state, action) => {
         switch (action.type) {
@@ -18,6 +19,30 @@ const ReducerHook = () => {
             }
             case "REMOVE": {
                 return state.filter((item)=>item.name !== action.name)
+            }
+            case "EDITMODE": {
+                return state.map((item)=> {
+                    if(item.name === action.name) {
+                        return {...item, editMode: action.mode }
+                    }
+                    else {
+                        return {...item, editMode: false}
+                    }
+                })
+            }
+            case "CHANGE": {
+                if( state.some((item)=>item.name === action.name) ) {
+                    alert("This customer already exists");
+                    return state;
+                }
+                else {
+                    return state.map((item)=> {
+                        if(item.name === oldValue.current.name) {
+                            return {...item, name: action.name, phone: action.phone, editMode: false}
+                        }
+                        return item;
+                    })
+                }
             }
             default:
                 return state;
@@ -39,16 +64,27 @@ const ReducerHook = () => {
     }
 
     function handleAdd(event) {
-        dispatch({type: "ADD", name: name, phone: phone});
+        dispatch({type: "ADD", name: name, phone: phone, editMode: false});
         event.preventDefault();
     }
 
-    function handleEdit() {
-        dispatch({type: "EDIT", name: name, phone: phone})
+    function handleEditMode(item, mode) {
+        dispatch({type: "EDITMODE", name: item.name, mode: mode})
+        oldValue.current = {name: item.name, phone: item.phone}
     }
 
     function handleRemove(item) {
         dispatch({type: "REMOVE", name: item.name});
+    }
+
+    function handleChange(e, item) {
+        if(e.target[0].value === oldValue.current.name) {
+            dispatch({type: "EDITMODE", name: item.name, mode: false})
+        }
+        else {
+            dispatch({type: "CHANGE", name: e.target[0].value, phone: e.target[1].value})
+        }
+        e.preventDefault();
     }
 
     return (
@@ -63,17 +99,37 @@ const ReducerHook = () => {
             <form className="mb-3" onSubmit={handleAdd}>
                 <input className="form-control mb-2" type="text" value={name} onChange={handleName} placeholder="Name..."/>
                 <input className="form-control mb-2" type="text" value={phone} onChange={handlePhone} placeholder="Phone Number..."/>
-                <button className="btn me-2 mb-2 btn-primary" type="submit">Add Customer</button>
+                <button className="btn me-2 mb-2 btn-primary" type="submit" disabled={name==="" || phone===""}>Add Customer</button>
             </form>
             {
                 customers.map((item, i) => {
                     return (
+                        <form action="#" onSubmit={(event)=>handleChange(event, item)}>
                         <div className="d-grid gap-2 d-sm-flex justify-content-sm-between mb-4" key={`item_${i}`}>
-                            <div className="customer">
-                                <strong>Name: </strong>{item.name} &nbsp; <strong>Phone: </strong> {item.phone}
+                            {
+                                !item.editMode ?
+                                <div className="d-grid gap-3 d-flex col-sm customer">
+                                    <div><strong>Name: </strong>{item.name}</div>
+                                    <div><strong>Phone: </strong> {item.phone}</div>
+                                </div>
+                                :
+                                <div className="customer">
+                                    <input className="form-control mb-2" name={`name_${i}`} type="text" defaultValue={item.name} placeholder="Name..."/>
+                                    <input className="form-control mb-2" name={`phone_${i}`} type="text" defaultValue={item.phone} placeholder="Phone Number..."/>
+                                </div>
+                                    
+                            }
+                            <div className="d-flex justify-content-end">
+                                {
+                                    !item.editMode ?
+                                    <input type="button" value="Edit" className="btn btn-sm btn-secondary me-2" onClick={()=>handleEditMode(item, true)} />
+                                    :
+                                    <button className="btn btn-sm btn-secondary me-2" type="submit">Save</button>
+                                }
+                                <button className="btn btn-sm btn-danger" onClick={()=>handleRemove(item)}>Remove</button>
                             </div>
-                            <button className="btn btn-sm btn-danger" onClick={()=>handleRemove(item)}>Remove</button>
                         </div>
+                        </form>
                     )
                 })
             }
