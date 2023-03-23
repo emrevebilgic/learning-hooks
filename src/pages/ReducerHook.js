@@ -23,7 +23,7 @@ const ReducerHook = () => {
             case "EDITMODE": {
                 return state.map((item)=> {
                     if(item.name === action.name) {
-                        return {...item, editMode: action.mode }
+                        return {...item, phone: action.phone, editMode: action.mode }
                     }
                     else {
                         return {...item, editMode: false}
@@ -69,7 +69,7 @@ const ReducerHook = () => {
     }
 
     function handleEditMode(item, mode) {
-        dispatch({type: "EDITMODE", name: item.name, mode: mode})
+        dispatch({type: "EDITMODE", name: item.name, phone: item.phone, mode: mode})
         oldValue.current = {name: item.name, phone: item.phone}
     }
 
@@ -79,7 +79,7 @@ const ReducerHook = () => {
 
     function handleChange(e, item) {
         if(e.target[0].value === oldValue.current.name) {
-            dispatch({type: "EDITMODE", name: item.name, mode: false})
+            dispatch({type: "EDITMODE", name: item.name, phone: e.target[1].value, mode: false})
         }
         else {
             dispatch({type: "CHANGE", name: e.target[0].value, phone: e.target[1].value})
@@ -113,9 +113,9 @@ const ReducerHook = () => {
                                     <div><strong>Phone: </strong> {item.phone}</div>
                                 </div>
                                 :
-                                <div className="customer">
-                                    <input className="form-control mb-2" name={`name_${i}`} type="text" defaultValue={item.name} placeholder="Name..."/>
-                                    <input className="form-control mb-2" name={`phone_${i}`} type="text" defaultValue={item.phone} placeholder="Phone Number..."/>
+                                <div className="d-grid gap-2 d-flex col-sm">
+                                    <input className="form-control" name={`name_${i}`} type="text" defaultValue={item.name} placeholder="Name..."/>
+                                    <input className="form-control" name={`phone_${i}`} type="text" defaultValue={item.phone} placeholder="Phone Number..."/>
                                 </div>
                                     
                             }
