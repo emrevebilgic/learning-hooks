@@ -7,7 +7,7 @@ const MemoHook = () => {
 
     const [color, setColor] = useState("primary");
     const [count, setCount] = useState(500000000);
-    const [flag, setFlag] = useState(false);
+    const [flag, setFlag] = useState(true);
 
     //Switch the comment notation wetween these lines and you will see the performance change...
     
@@ -41,7 +41,7 @@ const MemoHook = () => {
                 If you check the console, you'll see the counter wokrs <strong>twice</strong> on the state change. The second run is about our other use case: <strong>Skipping re-renders.</strong><br/>
                 We have another <code>useMemo()</code> planted in the calculator's parent component. The parent passes a variable to calculator, which is again calculated by an expensive function. Everytime the parent gets a re-render, this variable is recreated. To optimize this, we wrap the function calculating our variable inside a <code>useMemo()</code> hook. With this, even if we re-render the parent (without changing <code>MemoCalculator</code>)'s props) our calculator will stay put. <br/>
             </p>
-            <button className="btn w-100 btn-danger mb-3" onClick={()=>{setFlag((current) => !current)}}>{flag ? "Re-Render Parent!" : "Re-Render Parent!" }</button>
+            <button className="btn w-100 btn-danger mb-3" onClick={()=>{setFlag((current) => !current)}}>{flag ? "Re-Render Parent!" : "Re-Render Again!" }</button>
             <p className="explanation">
                 <small>(Performance hooks don't have many use cases, they're not supposed to be all over our code. Many times optimization is possible without these hooks. Definitely check out <a href="https://react.dev/reference/react/useMemo">React Documentation</a> to see details.)</small>
             </p>
