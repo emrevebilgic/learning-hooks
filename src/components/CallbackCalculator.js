@@ -1,9 +1,7 @@
 import React from "react";
 import {memo, useState, useEffect} from "react";
 
-const HeavyCalculator = (props) => {
-
-    const [liveCount, setLiveCount] = useState(0);
+const CallbackCalculator = (props) => {
 
     useEffect ( ()=> {
         props.calculate();
@@ -19,4 +17,4 @@ const HeavyCalculator = (props) => {
     )
 };
 
-export default memo(HeavyCalculator);
+export default memo(CallbackCalculator);

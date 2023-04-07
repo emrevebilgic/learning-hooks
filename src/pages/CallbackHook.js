@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useCallback } from "react";
-import HeavyCalculator from "../components/HeavyCalculator";
+import CallbackCalculator from "../components/CallbackCalculator";
+import { countToNumber } from "../utils/utilFunctions";
 
 const CallbackHook = () => {
 
@@ -8,12 +9,7 @@ const CallbackHook = () => {
     const [count, setCount] = useState(500000000);
 
     const calculate = useCallback(() => {
-        let num = 0;
-        for (let i = 0; i < count; i++) {
-            num ++
-        }
-        console.log("just calculated to "+count)
-        return num;
+        countToNumber(count);
     },[count]);
 
     return (
@@ -29,7 +25,7 @@ const CallbackHook = () => {
                 <button className="btn btn-danger" onClick={()=>{setColor("danger")}}>Danger</button>
             </div>
             <div className={`calculator bg-${color} mb-3`}> 
-                <HeavyCalculator count={count} calculate={calculate}/>
+                <CallbackCalculator count={count} calculate={calculate}/>
             </div>
             <div className="d-flex d-grid gap-2 mb-3">
                 <button className="btn btn-light" onClick={()=>{setCount(500000000)}}>500.000.000</button>
