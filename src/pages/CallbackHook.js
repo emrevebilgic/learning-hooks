@@ -12,6 +12,7 @@ const CallbackHook = () => {
         for (let i = 0; i < count; i++) {
             num ++
         }
+        console.log("just calculated to "+count)
         return num;
     },[count]);
 
@@ -31,9 +32,9 @@ const CallbackHook = () => {
                 <HeavyCalculator count={count} calculate={calculate}/>
             </div>
             <div className="d-flex d-grid gap-2 mb-3">
-                <button className="btn btn-info" onClick={()=>{setCount(500000000)}}>500.000</button>
-                <button className="btn btn-info" onClick={()=>{setCount(1000000000)}}>1.000.000.000</button>
-                <button className="btn btn-info" onClick={()=>{setCount(2000000000)}}>2.000.000.000</button>
+                <button className="btn btn-light" onClick={()=>{setCount(500000000)}}>500.000.000</button>
+                <button className="btn btn-light" onClick={()=>{setCount(1000000000)}}>1.000.000.000</button>
+                <button className="btn btn-light" onClick={()=>{setCount(2000000000)}}>2.000.000.000</button>
             </div>
             <p className="explanation">
                 To prevent that, we put the <code>calculate()</code> function into <code>useCallback()</code> hook. The syntax is:<br/>

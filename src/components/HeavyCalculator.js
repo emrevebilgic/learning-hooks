@@ -6,6 +6,7 @@ const HeavyCalculator = (props) => {
     const [liveCount, setLiveCount] = useState(0);
 
     useEffect ( ()=> {
+        props.calculate();
         console.log("calculator is rendered")
     })
 
