@@ -1,11 +1,14 @@
 import React from "react";
+import { memo } from "react";
 import {useEffect, useMemo} from "react";
 import { countToNumber } from "../utils/utilFunctions";
 
 const MemoCalculator = (props) => {
     
-    const count = useMemo(() => {countToNumber(props.count)}, [props.count])
+    //Switch the comment notation wetween these lines and you will see the performance change...
+
     // const count = countToNumber(props.count);
+    const count = useMemo(() => {countToNumber(props.count)}, [props.count])
 
     useEffect ( ()=> {
         console.log("calculator is rendered")
@@ -20,4 +23,4 @@ const MemoCalculator = (props) => {
     )
 };
 
-export default MemoCalculator;
+export default memo(MemoCalculator);

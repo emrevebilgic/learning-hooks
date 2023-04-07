@@ -7,7 +7,10 @@ const MemoHook = () => {
 
     const [color, setColor] = useState("primary");
     const [count, setCount] = useState(500000000);
+    const [flag, setFlag] = useState(false);
 
+    //Switch the comment notation wetween these lines and you will see the performance change...
+    
     // const statelessCount = countToNumber(count);
     const statelessCount = useMemo(() => {countToNumber(count)}, [count]);
 
@@ -15,7 +18,7 @@ const MemoHook = () => {
         <>
             <p className="explanation">
                 <code>useMemo()</code> is ta performance tool. It prevents a value from being recreated/rerun on each render. Here is a simple example:<br/>
-                We have a <code>&lt;MemoCalculator /&gt;</code> component and inside there is a variable calculated by an expensive function. Even if we don't change the anyting related to the variable, every render will cause a re-calculation of it. In this example, change of numbers should effect the variable, but change of colors should not.
+                We have a <code>&lt;MemoCalculator /&gt;</code> component and inside there is a variable calculated by an expensive function. (you felt a little delay when you first come to this page, didn't you? Yep, that was the function running.) Even if we don't change the anyting related to the variable, every render will cause a re-calculation of it. In this example, change of numbers should effect the variable, but change of colors should not.
             </p>
             <div className="d-flex d-grid gap-2 mb-3">
                 <button className="btn btn-primary" onClick={()=>{setColor("primary")}}>Primary</button>
@@ -36,7 +39,10 @@ const MemoHook = () => {
 
             <p className="explanation">
                 If you check the console, you'll see the counter wokrs <strong>twice</strong> on the state change. The second run is about our other use case: <strong>Skipping re-renders.</strong><br/>
-                We have another <code>useMemo()</code> planted in the calculator's parent component. The parent passes a variable to calculator, which is again calculated by an expensive function. Everytime the parent gets a re-render, this variable is recreated. To optimize this, we wrap the function calculating our variable inside a <code>useMemo()</code> hook. With this, no color change can effect out calculator. <br/>
+                We have another <code>useMemo()</code> planted in the calculator's parent component. The parent passes a variable to calculator, which is again calculated by an expensive function. Everytime the parent gets a re-render, this variable is recreated. To optimize this, we wrap the function calculating our variable inside a <code>useMemo()</code> hook. With this, even if we re-render the parent (without changing <code>MemoCalculator</code>)'s props) our calculator will stay put. <br/>
+            </p>
+            <button className="btn w-100 btn-danger mb-3" onClick={()=>{setFlag((current) => !current)}}>{flag ? "Re-Render Parent!" : "Re-Render Parent!" }</button>
+            <p className="explanation">
                 <small>(Performance hooks don't have many use cases, they're not supposed to be all over our code. Many times optimization is possible without these hooks. Definitely check out <a href="https://react.dev/reference/react/useMemo">React Documentation</a> to see details.)</small>
             </p>
 

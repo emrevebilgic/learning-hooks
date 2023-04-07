@@ -8,16 +8,17 @@ const CallbackHook = () => {
     const [color, setColor] = useState("primary");
     const [count, setCount] = useState(500000000);
 
-    const calculate = useCallback(() => {
-        countToNumber(count);
-    },[count]);
+    //switch the comment notation between these lines and you will see the perfomance change...
+
+    //const calculate = () => {countToNumber(count)}
+    const calculate = useCallback(() => {countToNumber(count)},[count]);
 
     return (
         <>
             <p className="explanation">
                 <code>useCallback()</code> is ta performance tool. It caches a function so it's not recreated/recalculated unnecesarily at each render. Here is a simple example: <br/>
-                We have a <code>&lt;HeavyCalculator/&gt;</code> component wrapped up in a colorful box. It has two props: <code>count</code> and <code>calculate()</code> We want this component re-rendered ONLY these props are changed., not the color... So we use <code>memo()</code> when we are exporting out calculator. So far so good... But it wont't work. Why? <br/>
-                Because the <code>calculate()</code> prop is a function. Everytime this page is re-rendered, that functions is recreated. So <code>&lt;HeavyCalculator/&gt;</code> will see that prop as a brand new one, accepted as changed, and will get a re-render.
+                We have a <code>&lt;CallbackCalculator/&gt;</code> component wrapped up in a colorful box. It has two props: <code>count</code> and <code>calculate()</code> We want this component re-rendered ONLY these props are changed, not the color... So we use <code>memo()</code> when we are exporting out calculator. So far so good... But it wont't work. Why? <br/>
+                Because the <code>calculate()</code> prop is a function. Everytime this page is re-rendered, that functions is recreated. So our calculator will see that prop as a brand new one, accepted as changed, and will get a re-render.
             </p>
             <div className="d-flex d-grid gap-2 mb-3">
                 <button className="btn btn-primary" onClick={()=>{setColor("primary")}}>Primary</button>
