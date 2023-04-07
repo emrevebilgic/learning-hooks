@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './pages/Layout';
+import Home from './pages/Home';
 import StateHook from './pages/StateHook';
 import EffectHook from './pages/EffectHook';
 import ContextHook from './pages/ContextHook';
@@ -16,7 +17,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<StateHook />} />
+          <Route index element={<Home />} />
           <Route path="use-state" element={<StateHook />} />
           <Route path="use-effect" element={<EffectHook />} />
           <Route path="use-context" element={<ContextHook />} />

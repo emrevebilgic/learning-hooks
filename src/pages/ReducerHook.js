@@ -90,7 +90,7 @@ const ReducerHook = () => {
     return (
         <>
             <p className="explanation">
-                <code>useReducer()</code> is the perfect tool for complex state management.<br/> Let's say we have a state that can be changed in many ways: Adding, removing elements, changing elements' content, reversing the order of them etc. <code>useState()</code> is a weak solution because for all the different needs, I have only one <code>setState</code> and each time I have to create a different function ending with a <code>setState().</code> Instead, We will only have one function and it will <strong> <code>dispatch</code> actions</strong> for our different needs.
+                <code>useReducer()</code> is the perfect tool for complex state management.<br/> Let's say we have a state that can be changed in many ways: Adding, removing elements, changing elements' content, reversing the order of them etc. <code>useState()</code> is a weak solution because for all the different needs, we have only one <code>setState</code> and each time we have to create a different function ending with a <code>setState().</code> Instead, we will only have one function and it will <strong> <code>dispatch</code> actions</strong> for our different needs.
                 <br/><br/>
                 Here is <code>useReducer</code>'s structure: <br/> <code>useReducer(<var>&lt;reducer&gt;,&lt;initState&gt;,&lt;initFunc?&gt;</var>)</code> <br/> <br/>
                 <strong>Reducer</strong> is the function that will dispatch the actions. <strong>State</strong> will be the first value of our state. <strong>Function</strong> is optional: If the initial state has to be calculated via some logic, we will use this as: <code>initFunc(initState).</code> <br/> <br/>
